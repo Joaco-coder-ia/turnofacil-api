@@ -84,3 +84,27 @@ def test_rechaza_cliente_vacio() -> None:
     )
 
     assert response.status_code == 422
+
+def test_filtrar_reservas_por_estado() -> None:
+    client.post(
+        "/reservas",
+        json={
+            "cliente": "Ana Pérez",
+            "servicio": "Orientación académica",
+            "fecha_hora": "2026-08-20T10:30:00",
+        },
+    )
+
+    pendientes = client.get(
+        "/reservas",
+        params={"estado": "pendiente"},
+    )
+    confirmadas = client.get(
+        "/reservas",
+        params={"estado": "confirmada"},
+    )
+
+    assert pendientes.status_code == 200
+    assert len(pendientes.json()) == 1
+    assert confirmadas.status_code == 200
+    assert confirmadas.json() == []
