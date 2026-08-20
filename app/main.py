@@ -1,5 +1,4 @@
-from fastapi import FastAPI, HTTPException, status
-
+from fastapi import FastAPI, HTTPException, Query, status
 from app.models import Reserva, ReservaCreate
 
 app = FastAPI(
@@ -25,10 +24,19 @@ def crear_reserva(datos: ReservaCreate) -> Reserva:
     next_id += 1
     return reserva
 
-
 @app.get("/reservas", response_model=list[Reserva])
-def listar_reservas() -> list[Reserva]:
-    return list(reservas.values())
+def listar_reservas(
+        estado: str | None = Query(default=None),
+) -> list[Reserva]:
+    resultado = list(reservas.values())
+
+    if estado is not None:
+        resultado = [
+            reserva for reserva in resultado
+            if reserva.estado == estado
+        ]
+
+    return resultado
 
 
 @app.get("/reservas/{reserva_id}", response_model=Reserva)
