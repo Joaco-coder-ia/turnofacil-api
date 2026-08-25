@@ -60,7 +60,9 @@ def actualizar_estado_reserva(reserva_id: int, datos: ReservaUpdate) -> Reserva:
 
 
 @app.delete("/reservas/{reserva_id}", status_code=status.HTTP_204_NO_CONTENT)
-def eliminar_reserva(reserva_id: int) -> None:
+def eliminar_reserva(reserva_id: int):
     if reserva_id not in reservas:
         raise HTTPException(status_code=404, detail="Reserva no encontrada")
+    
     del reservas[reserva_id]
+    return None
