@@ -84,3 +84,28 @@ def test_rechaza_cliente_vacio() -> None:
     )
 
     assert response.status_code == 422
+
+def test_actualizar_estado_reserva_exito() -> None:
+    # Creamos una reserva previa
+    client.post(
+        "/reservas",
+        json={
+            "cliente": "Carlos Ruiz",
+            "servicio": "Terapia",
+            "fecha_hora": "2026-08-25T15:00:00",
+        },
+    )
+    
+    # Hacemos PATCH para cambiar a confirmada
+    response = client.patch("/reservas/1", json={"estado": "confirmada"})
+    
+    assert response.status_code == 200
+    assert response.json()["estado"] == "confirmada"
+
+
+def test_actualizar_estado_reserva_inexistente() -> None:
+    # Intentamos modificar una reserva con ID 9999 que no existe
+    response = client.patch("/reservas/9999", json={"estado": "cancelada"})
+    
+    assert response.status_code == 404
+    assert response.json()["detail"] == "Reserva no encontrada"
