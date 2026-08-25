@@ -50,6 +50,47 @@ def test_rechaza_cliente_y_servicio_solo_espacios() -> None:
     )
     assert response_servicio.status_code == 422
 
+def test_normaliza_cliente_con_espacios_extremos() -> None:
+    # Verificar que cliente con espacios al inicio y al final se normaliza correctamente
+    response = client.post(
+        "/reservas",
+        json={
+            "cliente": "  Juan Pérez  ",
+            "servicio": "Orientación académica",
+            "fecha_hora": "2026-08-20T10:30:00",
+        },
+    )
+    assert response.status_code == 201
+    assert response.json()["cliente"] == "Juan Pérez"
+
+
+def test_normaliza_servicio_con_espacios_extremos() -> None:
+    # Verificar que servicio con espacios al inicio y al final se normaliza correctamente
+    response = client.post(
+        "/reservas",
+        json={
+            "cliente": "Juan Pérez",
+            "servicio": "  Orientación académica  ",
+            "fecha_hora": "2026-08-20T10:30:00",
+        },
+    )
+    assert response.status_code == 201
+    assert response.json()["servicio"] == "Orientación académica"
+
+
+def test_rechaza_texto_menos_de_2_caracteres_post_strip() -> None:
+    # Verificar que un valor que queda con menos de 2 caracteres después de strip() responde 422
+    response = client.post(
+        "/reservas",
+        json={
+            "cliente": "   A   ",
+            "servicio": "Orientación académica",
+            "fecha_hora": "2026-08-20T10:30:00",
+        },
+    )
+    assert response.status_code == 422
+
+
 def test_health() -> None:
     response = client.get("/health")
 
