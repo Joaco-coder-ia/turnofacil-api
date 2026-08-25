@@ -165,3 +165,45 @@ def test_eliminar_reserva_inexistente_entrega_404() -> None:
 
     assert response.status_code == 404
     assert response.json()["detail"] == "Reserva no encontrada"
+def test_filtro_estado_funciona_tras_eliminar() -> None:
+    creada = client.post(
+        "/reservas",
+        json={
+            "cliente": "Pedro Diaz",
+            "servicio": "Consulta",
+            "fecha_hora": "2026-08-25T09:00:00",
+        },
+    )
+    client.delete(f"/reservas/{creada.json()['id']}")
+
+    response = client.get("/reservas", params={"estado": "pendiente"})
+
+    assert response.status_code == 200
+    assert response.json() == []
+
+
+def test_flujo_completo_reserva() -> None:
+    crear = client.post(
+        "/reservas",
+        json={
+            "cliente": "Sofía Reyes",
+            "servicio": "Terapia",
+            "fecha_hora": "2026-08-26T10:00:00",
+        },
+    )
+    assert crear.status_code == 201
+    reserva_id = crear.json()["id"]
+
+    filtrar = client.get("/reservas", params={"estado": "pendiente"})
+    assert filtrar.status_code == 200
+    assert any(r["id"] == reserva_id for r in filtrar.json())
+
+    actualizar = client.patch(f"/reservas/{reserva_id}", json={"estado": "confirmada"})
+    assert actualizar.status_code == 200
+    assert actualizar.json()["estado"] == "confirmada"
+
+    eliminar = client.delete(f"/reservas/{reserva_id}")
+    assert eliminar.status_code == 204
+
+    verificar = client.get(f"/reservas/{reserva_id}")
+    assert verificar.status_code == 404
