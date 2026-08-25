@@ -1,5 +1,5 @@
 from fastapi import FastAPI, HTTPException, status
-
+from app.models import Reserva, ReservaCreate, ReservaUpdate
 from app.models import Reserva, ReservaCreate
 
 app = FastAPI(
@@ -38,3 +38,12 @@ def obtener_reserva(reserva_id: int) -> Reserva:
         raise HTTPException(status_code=404, detail="Reserva no encontrada")
     return reserva
 
+@app.patch("/reservas/{reserva_id}", response_model=Reserva, status_code=200)
+def actualizar_estado_reserva(reserva_id: int, datos: ReservaUpdate) -> Reserva:
+    reserva = reservas.get(reserva_id)
+    if reserva is None:
+        raise HTTPException(status_code=404, detail="Reserva no encontrada")
+    
+    # Actualizamos el estado en memoria
+    reserva.estado = datos.estado
+    return reserva
