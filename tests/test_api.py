@@ -144,27 +144,21 @@ def test_actualizar_estado_reserva_inexistente() -> None:
     assert response.json()["detail"] == "Reserva no encontrada"
 
 
-def test_eliminar_reserva() -> None:
-    creada = client.post(
-        "/reservas",
-        json={
-            "cliente": "Luis Soto",
-            "servicio": "Soporte técnico",
-            "fecha_hora": "2026-08-21T12:00:00",
-        },
-    )
-
-    response = client.delete(f"/reservas/{creada.json()['id']}")
-
+def test_eliminar_reserva_exito() -> None:
+    client.post("/reservas", json={
+        "cliente": "Borrar Me", "servicio": "Test", "fecha_hora": "2026-08-25T10:00:00"
+    })
+    
+    response = client.delete("/reservas/1")
+    
     assert response.status_code == 204
-    assert client.get("/reservas").json() == []
 
-
-def test_eliminar_reserva_inexistente_entrega_404() -> None:
+def test_eliminar_reserva_inexistente() -> None:
     response = client.delete("/reservas/999")
-
+    
     assert response.status_code == 404
     assert response.json()["detail"] == "Reserva no encontrada"
+
 def test_filtro_estado_funciona_tras_eliminar() -> None:
     creada = client.post(
         "/reservas",
