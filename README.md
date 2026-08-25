@@ -6,6 +6,9 @@ Microservicio sencillo para registrar y consultar reservas de atención. Este re
 
 - Maximiliano Rodriguez Gamboa
 - Benjamín Dattoli Peña
+- Joaquín Alberto González Sánchez
+- Mateo Nogueira Calvo
+- Vicente Fabar
 
 
 ## Tecnologías
