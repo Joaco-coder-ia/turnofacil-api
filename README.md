@@ -25,9 +25,10 @@ Microservicio sencillo para registrar y consultar reservas de atención. Este re
 | --- | --- | --- |
 | `GET` | `/health` | Comprueba que la API está funcionando |
 | `POST` | `/reservas` | Registra una reserva |
-| `GET` | `/reservas` | Lista todas las reservas |
+| `GET` | `/reservas` | Lista reservas; admite el filtro opcional `?estado=` |
 | `GET` | `/reservas/{id}` | Busca una reserva por su identificador |
 | `PATCH` | `/reservas/{id}` | Actualiza el estado de una reserva |
+| `DELETE` | `/reservas/{id}` | Elimina una reserva existente |
 
 Los datos se guardan en memoria y se borran al detener la aplicación.
 
@@ -108,6 +109,7 @@ El workflow se ejecuta en un runner remoto de GitHub: descarga el repositorio, c
 - [Guía de contribución](CONTRIBUTING.md)
 - [Checklist final](docs/CHECKLIST_ENTREGA.md)
 - [Plan de colaboración](docs/PLAN_COLABORACION.md)
+- [Estado de entrega y pendientes](docs/ESTADO_ENTREGA.md)
 
 ## Estructura
 
@@ -122,6 +124,7 @@ turnofacil-api/
 |   |-- CHECKLIST_ENTREGA.md
 |   |-- CONCLUSIONES.md
 |   |-- DECLARACION_IA.md
+|   |-- ESTADO_ENTREGA.md
 |   |-- PLAN_COLABORACION.md
 |   `-- TRAZABILIDAD.md
 |-- tests/
