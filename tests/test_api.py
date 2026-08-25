@@ -27,6 +27,28 @@ def setup_function() -> None:
     reservas.clear()
     api.next_id = 1
 
+def test_rechaza_cliente_y_servicio_solo_espacios() -> None:
+    # Caso 1: cliente con solo espacios
+    response_cliente = client.post(
+        "/reservas",
+        json={
+            "cliente": "   ",
+            "servicio": "Orientación académica",
+            "fecha_hora": "2026-08-20T10:30:00",
+        },
+    )
+    assert response_cliente.status_code == 422
+
+    # Caso 2: servicio con solo espacios
+    response_servicio = client.post(
+        "/reservas",
+        json={
+            "cliente": "Ana Pérez",
+            "servicio": "   ",
+            "fecha_hora": "2026-08-20T10:30:00",
+        },
+    )
+    assert response_servicio.status_code == 422
 
 def test_health() -> None:
     response = client.get("/health")
