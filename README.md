@@ -107,6 +107,7 @@ El workflow se ejecuta en un runner remoto de GitHub: descarga el repositorio, c
 - [Declaración de uso de IA](docs/DECLARACION_IA.md)
 - [Guía de contribución](CONTRIBUTING.md)
 - [Checklist final](docs/CHECKLIST_ENTREGA.md)
+- [Plan de colaboración](docs/PLAN_COLABORACION.md)
 
 ## Estructura
 
@@ -121,6 +122,7 @@ turnofacil-api/
 |   |-- CHECKLIST_ENTREGA.md
 |   |-- CONCLUSIONES.md
 |   |-- DECLARACION_IA.md
+|   |-- PLAN_COLABORACION.md
 |   `-- TRAZABILIDAD.md
 |-- tests/
 |   `-- test_api.py
