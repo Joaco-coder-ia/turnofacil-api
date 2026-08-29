@@ -201,3 +201,51 @@ def test_flujo_completo_reserva() -> None:
 
     verificar = client.get(f"/reservas/{reserva_id}")
     assert verificar.status_code == 404
+
+
+def test_rechaza_cliente_largo() -> None:
+    response = client.post(
+        "/reservas",
+        json={
+            "cliente": "A" * 81,  # 81 caracteres, supera el límite de 80
+            "servicio": "Soporte técnico",
+            "fecha_hora": "2026-08-25T12:00:00",
+        },
+    )
+    assert response.status_code == 422
+
+
+def test_rechaza_servicio_largo() -> None:
+    response = client.post(
+        "/reservas",
+        json={
+            "cliente": "Ana Pérez",
+            "servicio": "S" * 81,  # 81 caracteres, supera el límite de 80
+            "fecha_hora": "2026-08-25T12:00:00",
+        },
+    )
+    assert response.status_code == 422
+
+
+def test_acepta_limites_permitidos() -> None:
+    # Probando exactamente el límite inferior (2 caracteres)
+    response_min = client.post(
+        "/reservas",
+        json={
+            "cliente": "Lu", 
+            "servicio": "PC", 
+            "fecha_hora": "2026-08-25T12:00:00",
+        },
+    )
+    assert response_min.status_code == 201
+
+    # Probando exactamente el límite superior (80 caracteres)
+    response_max = client.post(
+        "/reservas",
+        json={
+            "cliente": "B" * 80,
+            "servicio": "T" * 80,
+            "fecha_hora": "2026-08-25T12:00:00",
+        },
+    )
+    assert response_max.status_code == 201

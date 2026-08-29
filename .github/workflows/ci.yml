@@ -12,6 +12,7 @@ permissions:
 jobs:
   pruebas:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Descargar repositorio
         uses: actions/checkout@v4
@@ -27,3 +28,12 @@ jobs:
 
       - name: Ejecutar pruebas automatizadas
         run: python -m pytest
+
+      - name: Verificar dependencias instaladas
+        run: python -m pip check
+
+      - name: Verificar compilación del código
+        run: python -m compileall -q app tests
+
+      - name: Construir imagen Docker
+        run: docker build --tag turnofacil-api:ci .
