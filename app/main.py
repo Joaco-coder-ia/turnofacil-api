@@ -1,6 +1,5 @@
-from fastapi import FastAPI, HTTPException, status
+from fastapi import FastAPI, HTTPException, Query, status
 from app.models import Reserva, ReservaCreate, ReservaUpdate
-from app.models import Reserva, ReservaCreate
 
 app = FastAPI(
     title="TurnoFácil API",
@@ -27,8 +26,20 @@ def crear_reserva(datos: ReservaCreate) -> Reserva:
 
 
 @app.get("/reservas", response_model=list[Reserva])
-def listar_reservas() -> list[Reserva]:
-    return list(reservas.values())
+def listar_reservas(
+    estado: str | None = Query(default=None),
+) -> list[Reserva]:
+    resultado = list(reservas.values())
+
+    if estado is not None:
+        estado_normalizado = estado.strip().casefold()
+        resultado = [
+            reserva
+            for reserva in resultado
+            if reserva.estado.casefold() == estado_normalizado
+        ]
+
+    return resultado
 
 
 @app.get("/reservas/{reserva_id}", response_model=Reserva)
@@ -38,12 +49,20 @@ def obtener_reserva(reserva_id: int) -> Reserva:
         raise HTTPException(status_code=404, detail="Reserva no encontrada")
     return reserva
 
+
 @app.patch("/reservas/{reserva_id}", response_model=Reserva, status_code=200)
 def actualizar_estado_reserva(reserva_id: int, datos: ReservaUpdate) -> Reserva:
     reserva = reservas.get(reserva_id)
     if reserva is None:
         raise HTTPException(status_code=404, detail="Reserva no encontrada")
-    
-    # Actualizamos el estado en memoria
     reserva.estado = datos.estado
     return reserva
+
+
+@app.delete("/reservas/{reserva_id}", status_code=status.HTTP_204_NO_CONTENT)
+def eliminar_reserva(reserva_id: int) -> None:
+    if reserva_id not in reservas:
+        raise HTTPException(status_code=404, detail="Reserva no encontrada")
+
+    del reservas[reserva_id]
+    return None
