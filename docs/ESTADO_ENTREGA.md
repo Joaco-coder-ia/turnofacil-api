@@ -1,6 +1,6 @@
 # Estado de entrega EP1
 
-Última revisión: 25 de agosto de 2026.
+Última revisión: 29 de agosto de 2026.
 
 Este documento separa lo que ya está preparado de lo que todavía debe ocurrir en GitHub. Un mensaje o una rama preparada no reemplaza un commit, una revisión, una ejecución de CI o un merge real.
 
@@ -10,28 +10,24 @@ Este documento separa lo que ya está preparado de lo que todavía debe ocurrir 
 - El README incluye a Joaquín Alberto González Sánchez, Mateo Nogueira Calvo, Benjamín Patricio Dattoli Peña, Maximiliano Gael Rodriguez Gamboa y Vicente Alonso Fabar Arce.
 - Existen `main`, `develop`, ramas `feature/*` y `hotfix/validar-texto-vacio`.
 - El workflow `.github/workflows/ci.yml` ejecuta pytest, pip check, compilación y construcción Docker.
-- En la copia local de documentación se ejecutan 7 pruebas exitosas.
-- El PR [#7](https://github.com/Joaco-coder-ia/turnofacil-api/pull/7) quedó dirigido a `develop`.
-- El PR [#8](https://github.com/Joaco-coder-ia/turnofacil-api/pull/8) quedó dirigido a `develop` y contiene filtro, actualización y eliminación.
+- En la copia local de `develop` se ejecutan 16 pruebas exitosas.
+- El PR [#7](https://github.com/Joaco-coder-ia/turnofacil-api/pull/7) fue aprobado por BenjaDaDuoc y fusionado en `develop`.
+- El PR [#8](https://github.com/Joaco-coder-ia/turnofacil-api/pull/8) recibió una revisión técnica de Maeton, se corrigió la observación y fue fusionado en `develop`.
+- El PR [#12](https://github.com/Joaco-coder-ia/turnofacil-api/pull/12) fue revisado por Joaco-coder-ia, retargeteado correctamente a `develop` y fusionado.
 - El PR [#9](https://github.com/Joaco-coder-ia/turnofacil-api/pull/9) quedó dirigido a `main`; al revisarlo estaba sin conflictos y con su check exitoso.
-- La invitación de colaborador para `Maeton` fue enviada y está pendiente de aceptación.
+- La última ejecución de GitHub Actions sobre `develop` terminó correctamente.
 
 ## Falta para entregar
 
-1. Mateo debe aceptar la invitación `Maeton`.
-2. Cada integrante debe subir sus tres pruebas nuevas desde su propia cuenta, con commit convencional, ejecución de `pytest` y PR o actualización verificable. Los mensajes publicados son instrucciones, no evidencia terminada.
-3. Maximiliano todavía necesita una asignación explícita de sus tres pruebas y debe dejar una revisión real del PR que no sea suyo.
-4. Los PR #7 y #8 requieren revisiones y aprobaciones de integrantes distintos del autor antes de fusionarse en `develop`.
-5. El PR #9 requiere revisión de Maximiliano; después debe fusionarse en `main` por la persona autorizada.
-6. Después del merge del hotfix, hay que sincronizar `main` hacia `develop` y comprobar nuevamente el filtro, PATCH y DELETE.
-7. Se debe abrir y completar el PR final de `develop` hacia `main` si el flujo de entrega lo exige.
-8. Benjamín debe completar `docs/TRAZABILIDAD.md` con revisores y enlaces reales a Actions; no se deben dejar marcadores `[COMPLETAR...]`.
-9. El equipo debe escribir su justificación de GitFlow y cada integrante su reflexión en `docs/CONCLUSIONES.md`, con experiencias reales y sin texto generado por IA.
-10. Proteger `main` con revisiones/checks obligatorios, crear la etiqueta `v0.1.0` sólo después del merge final y enviar el enlace por AVA/correo.
+1. Maximiliano debe revisar el PR #9; después debe fusionarse el hotfix en `main`.
+2. Después del merge del hotfix, hay que sincronizar `main` hacia `develop` y ejecutar nuevamente la suite completa.
+3. El PR final de `develop` hacia `main` debe actualizarse, quedar sin conflictos, obtener una revisión y completar CI en verde.
+4. El equipo debe escribir personalmente su justificación de GitFlow y cada integrante su reflexión en `docs/CONCLUSIONES.md`, sin texto generado por IA.
+5. Proteger `main` con revisiones/checks obligatorios, crear la etiqueta `v0.1.0` sólo después del merge final y enviar el enlace por AVA y correo.
 
 ## Orden recomendado de cierre
 
-`tests de cada integrante` → `revisiones` → `merge de features a develop` → `revisión y merge del hotfix a main` → `sync main/develop` → `PR final` → `trazabilidad, conclusiones, protección y tag`.
+`revisión y merge del hotfix a main` → `sync main/develop` → `PR final` → `conclusiones personales` → `protección y tag`.
 
 ## Qué aprendimos
 

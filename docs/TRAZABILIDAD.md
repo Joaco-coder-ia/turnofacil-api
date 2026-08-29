@@ -9,8 +9,8 @@ Los campos pendientes deben completarse sólo con información real de GitHub. E
 - Commit: [`765232e`](https://github.com/Joaco-coder-ia/turnofacil-api/commit/765232e20937bd228e3837b9ad5be191e349d223)
 - Pull request: [#1](https://github.com/Joaco-coder-ia/turnofacil-api/pull/1)
 - Estado observado: PR histórico integrado en `main`.
-- Revisor: `[COMPLETAR CON REVISOR REAL]`
-- Resultado CI: `[COMPLETAR CON ENLACE A ACTION]`
+- Revisor: no quedó una revisión formal registrada en este PR histórico.
+- Resultado CI: [ejecución exitosa del PR #1](https://github.com/Joaco-coder-ia/turnofacil-api/actions/runs/32329153482)
 
 ## Feature 2: actualización de estado
 
@@ -19,17 +19,17 @@ Los campos pendientes deben completarse sólo con información real de GitHub. E
 - Commit: [`6aa6b1a`](https://github.com/Joaco-coder-ia/turnofacil-api/commit/6aa6b1a)
 - Pull request: [#6](https://github.com/Joaco-coder-ia/turnofacil-api/pull/6)
 - Estado observado: PR histórico integrado en `develop`.
-- Revisor: `[COMPLETAR CON REVISOR REAL]`
-- Resultado CI: `[COMPLETAR CON ENLACE A ACTION]`
+- Revisor: no quedó una revisión formal registrada en este PR histórico.
+- Resultado CI: [ejecución exitosa posterior al merge en `develop`](https://github.com/Joaco-coder-ia/turnofacil-api/actions/runs/32899209744)
 
 ## Feature 3: filtro y eliminación de reservas
 
 - Rama: `feature/eliminar-reserva`
 - Objetivo: conservar el filtro por estado, actualizar estados y eliminar reservas con respuesta 404 cuando no existen.
 - Commit: [`7ff5c2c`](https://github.com/Joaco-coder-ia/turnofacil-api/commit/7ff5c2cc2962a91327b43275a5d3c22ab780a8e5)
-- Pull request: [#8](https://github.com/Joaco-coder-ia/turnofacil-api/pull/8), abierto hacia `develop`.
-- Revisor: `[COMPLETAR CON REVISOR REAL]`
-- Resultado CI: `[COMPLETAR CON ENLACE A ACTION]`
+- Pull request: [#8](https://github.com/Joaco-coder-ia/turnofacil-api/pull/8), fusionado en `develop`.
+- Revisor: Maeton dejó una observación técnica; fue atendida en el commit `81df2f1`.
+- Resultado CI: validación local de 16 pruebas y ejecución de `develop` posterior al merge.
 
 ## Hotfix: validación de textos vacíos
 
@@ -37,9 +37,9 @@ Los campos pendientes deben completarse sólo con información real de GitHub. E
 - Problema: `cliente` y `servicio` aceptaban textos compuestos sólo por espacios.
 - Commit: [`1510d2d`](https://github.com/Joaco-coder-ia/turnofacil-api/commit/1510d2d7e9a94402c3f4cfae70b39d45a6cfaf6f)
 - Pull request: [#9](https://github.com/Joaco-coder-ia/turnofacil-api/pull/9), abierto hacia `main`.
-- Estado observado: sin conflictos y con 1 check exitoso; falta revisión y merge.
-- Revisor: `[COMPLETAR CON REVISOR REAL]`
-- Resultado CI: [ver checks del PR #9](https://github.com/Joaco-coder-ia/turnofacil-api/pull/9/checks)
+- Estado observado: sin conflictos y con CI exitoso; falta revisión y merge.
+- Revisor solicitado: maxrodriguezg.
+- Resultado CI: [ejecución exitosa del PR #9](https://github.com/Joaco-coder-ia/turnofacil-api/actions/runs/33261072736)
 
 ## Comandos aplicados
 
