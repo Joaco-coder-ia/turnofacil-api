@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import Any
 
 from pydantic import BaseModel, Field, field_validator
 
@@ -9,7 +10,7 @@ class ReservaCreate(BaseModel):
 
     @field_validator("cliente", "servicio", mode="before")
     @classmethod
-    def validar_y_limpiar_texto(cls, valor: typing.Any) -> typing.Any:
+    def validar_y_limpiar_texto(cls, valor: Any) -> Any:
         if isinstance(valor, str):
             texto_limpio = valor.strip()
             if not texto_limpio:

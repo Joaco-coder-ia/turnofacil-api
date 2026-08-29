@@ -27,7 +27,7 @@ Microservicio sencillo para registrar y consultar reservas de atención. Este re
 
 Los datos se guardan en memoria y se borran al detener la aplicación.
 
-## Hotfix de Validación (#9) 
+## Hotfix de validación (#5)
 
 Se aplicó una corrección crítica en el modelo de datos (`app/models.py`) para evitar el registro de nombres de cliente o servicios vacíos o compuestos únicamente por espacios en blanco:
 
