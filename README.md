@@ -2,6 +2,9 @@
 
 Microservicio sencillo para registrar y consultar reservas de atención. Este repositorio se utiliza para practicar control de versiones con Git, trabajo colaborativo mediante GitHub y automatización de pruebas con GitHub Actions.
 
+## Integrantes
+- Joaquin Alberto Gonzalez Sanchez
+
 ## Tecnologías
 
 - Python 3.13
